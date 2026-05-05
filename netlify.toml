@@ -3,8 +3,12 @@
   functions = "netlify/functions"
 
 [functions]
-  external_node_modules = ["express", "sequelize"]
+  external_node_modules = ["express", "sequelize", "pg", "bcrypt"]
   node_bundler = "esbuild"
+
+[functions.esbuild]
+  format = "esm"
+  platform = "node"
 
 [[redirects]]
   from = "/api/*"
