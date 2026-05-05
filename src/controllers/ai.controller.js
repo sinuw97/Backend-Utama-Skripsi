@@ -3,6 +3,8 @@ import {
   summarizeArticle,
 } from "../services/ai.service.js";
 
+import { cekUserById } from "../services/auth.service.js";
+
 const searchController = async (req, res) => {
   try {
     const { query } = req.body;
@@ -15,8 +17,16 @@ const searchController = async (req, res) => {
     }
 
     if (!userId) {
-      return res.status(403).json({
+      return res.status(400).json({
         message: "User Id tidak ada atau tidak valid!",
+      });
+    }
+
+    const existingUser = await cekUserById(userId);
+    if (!existingUser) {
+      return res.status(404).json({
+        error: true,
+        message: "User tidak ditemukan!",
       });
     }
 

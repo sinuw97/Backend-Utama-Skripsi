@@ -38,7 +38,7 @@ const loginController = async (req, res) => {
     if (!username || !password) {
       return res.status(400).json({
         error: true,
-        message: "Username dan password harus di isi!",
+        message: "Username atau password harus di isi!",
       });
     }
 
