@@ -26,8 +26,8 @@ const getAllNoteController = async (req, res) => {
       data: notes,
     });
   } catch (error) {
-    const isAuthError = error.message.includes("akses");
-    return res.status(isAuthError ? 403 : 500).json({
+    const status = error.message.includes("tidak ditemukan") ? 404 : 500;
+    return res.status(status).json({
       error: true,
       message: error.message,
     });
@@ -62,8 +62,8 @@ const getNotesByIdController = async (req, res) => {
       data: note,
     });
   } catch (error) {
-    const isAuthError = error.message.includes("akses");
-    return res.status(isAuthError ? 403 : 500).json({
+    const status = error.message.includes("tidak ditemukan") ? 404 : 500;
+    return res.status(status).json({
       error: true,
       message: error.message,
     });
@@ -98,8 +98,8 @@ const postNewNoteController = async (req, res) => {
       data: newNote,
     });
   } catch (error) {
-    const isAuthError = error.message.includes("akses");
-    return res.status(isAuthError ? 403 : 500).json({
+    const status = error.message.includes("tidak ditemukan") ? 404 : 500;
+    return res.status(status).json({
       error: true,
       message: error.message,
     });
@@ -142,8 +142,8 @@ const editNoteController = async (req, res) => {
       data: updatedNote,
     });
   } catch (error) {
-    const isAuthError = error.message.includes("akses");
-    return res.status(isAuthError ? 403 : 500).json({
+    const status = error.message.includes("tidak ditemukan") ? 404 : 500;
+    return res.status(status).json({
       error: true,
       message: error.message,
     });
@@ -176,8 +176,8 @@ const deleteNoteController = async (req, res) => {
       message: "Berhasil menghapus notes",
     });
   } catch (error) {
-    const isAuthError = error.message.includes("akses");
-    return res.status(isAuthError ? 403 : 500).json({
+    const status = error.message.includes("tidak ditemukan") ? 404 : 500;
+    return res.status(status).json({
       error: true,
       message: error.message,
     });

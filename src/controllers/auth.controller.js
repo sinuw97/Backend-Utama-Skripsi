@@ -51,7 +51,7 @@ const loginController = async (req, res) => {
     })
 
   } catch (error) {
-    const status = error.message.includes("tidak cocok") ? 401 : 400;
+    const status = error.message.includes("tidak cocok") ? 401 : 500;
     return res.status(status).json({
       error: true,
       message: error.message || "Terjadi kesalahan saat login"
